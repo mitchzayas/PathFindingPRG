@@ -1,5 +1,5 @@
 # Wave Propagation Pathfinding
-This is a program for the Apple II that demonstrates [wave propagation path finding](https://youtu.be/0ihciMKlcP8). The program was written in assembly using the [CC65 Cross Compiler](https://cc65.github.io)
+This is a program for the Apple II that demonstrates [wave propagation path finding](https://youtu.be/0ihciMKlcP8). The program was written in assembly using the [CC65 Cross Compiler](https://cc65.github.io). To run the file in your favorite Apple II emulator, download the [WaveP Disk Image](/WaveP.DSK).
 
 ![Wave Propagation Program Screenshot](/WAVEP.png)
 
