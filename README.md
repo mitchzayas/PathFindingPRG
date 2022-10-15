@@ -1,5 +1,5 @@
 # What is it?
-This is a program for the Apple II that demos [wave propagation path finding](https://youtu.be/0ihciMKlcP8). The program is written in assembly using the [CC65 Cross Compiler](https://cc65.github.io)
+This is a program for the Apple II that demos [wave propagation path finding](https://youtu.be/0ihciMKlcP8). The program was written in assembly using the [CC65 Cross Compiler](https://cc65.github.io)
 
 ![Wave Propagation Program Screenshot](/WAVEP.png)
 
