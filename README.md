@@ -6,5 +6,5 @@ This is a program for the Apple II that demonstrates [wave propagation path find
 ### Using the Program:
 The program creates a grid consisting of 20 cells across and 12 cells down (240 cells total). One can move either the **Starting Cell** (S) or the **Goal Cell** (G) using the arrow keys and the path (in green) will automatically adjust to the new cell positions and around obstables.
 
-To toggle which cell you want to move, press "S" (or "G"), then use the arrow keys to move it arround the grid. Additionally, pressing "C" toggles a cursor that can also be moved using the arrow keys, then pressing "O" places (or removes) an obstacle at the cursor's position. To quit the program, press "Q".
+To toggle which cell you want to move, press "S" (or "G"), then use the arrow keys to move it around the grid. Additionally, pressing "C" toggles a cursor that can also be moved using the arrow keys, then pressing "O" places (or removes) an obstacle at the cursor's position. To quit the program, press "Q".
 
