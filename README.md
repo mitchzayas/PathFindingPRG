@@ -54,7 +54,7 @@ Wave Propagation Algorithm:
 5. Transfer each cell in the NeighborArray to the NodeArray. NeighborArray is now empty. Go back to step 3.
 
 ### Follow the path:
-Once we have each cell in the grid scored based on its distance to the goal node, we use the FindPath subroutine in the optimalPath.asm file to fill an array called Path.
+Once we have each cell in the grid scored based on its distance to the goal cell, we use the FindPath subroutine in the optimalPath.asm file to fill an array called Path.
 
 The first element added to this array is the start cell. It then looks at the scores for the east, west, north and south neighbors, picking the one with the lowest score. This cell then gets added to the Path array and the process repeats until the goal cell is reached.
 
