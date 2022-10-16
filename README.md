@@ -29,8 +29,6 @@ Essentially, the hires graphics page is divided into a grid of 20 cells across b
 
 I use two lookup tables (one for the hi-bytes of the addresses and one for the lo-bytes) to point to the top-left byte in each cell. From there, I use math (and knowledge of the Apple II’s “amazing” [HGR address layout](https://www.xtof.info/hires-graphics-apple-ii.html)) to access the remaining bytes in the cell. 
 
-[add screenshot of the lookup tables here]
-
 In the tilesGraphics.asm file, the subroutine called drawTile blasts 32 bytes of tile data to HGR page 1 (tile definitions are in the inits.asm file). Note, drawTile is fairly “unrolled” and leverages self-modifying code for speed. All we have to do is pass the cell number (0-239) to drawTile in the X-register and the tile number (0-5) in the accumulator. Many more tiles can be defined, but I only needed 6 for this demo.
 
 ### Casting a wave:
