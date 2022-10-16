@@ -53,9 +53,16 @@ Wave Propagation Algorithm:
 4. Remove the current cell from the NodeArray, since we’ve processed it. If there are other cells in NodeArray (there will be in subsequent passes), loop through each of them until NodeArray is empty (i.e. go back to step 3) 
 5. Transfer each cell in the NeighborArray to the NodeArray. NeighborArray is now empty. Go back to step 3.
 
-### Follow the path
+### Follow the path:
 Once we have each cell in the grid scored based on its distance to the goal node, we use the FindPath subroutine in the optimalPath.asm file to fill an array called Path.
 
 The first element added to this array is the start cell. It then looks at the scores for the east, west, north and south neighbors, picking the one with the lowest score. This cell then gets added to the Path array and the process repeats until the goal cell is reached.
 
 If the goal cell, start cell or an obstacle is added (or removed) from the grid, the program casts a new wave and rescores each cell once again, then we rerun FindPath.
+
+### The bottom line:
+So what can this be used for, you ask? In a game, these subroutines can allow an NPC to follow a path towards a desired location on the screen or to the main player character (think [The Terminator](https://en.wikipedia.org/wiki/The_Terminator), relentlessly hunting its prey).
+
+The routine that casts the wave takes ~5,700 cycles and the routine that finds a path takes ~4,000 cycles, so they are, perhaps, fast enough to run in real-time as players and desired locations move around.
+
+Separately, once the wave is cast and the grid is scored, one or more NPCs can leverage the scores data to find paths, meaning it can serve a large number non-player characters (i.e. a Path array for each desired NPC).
