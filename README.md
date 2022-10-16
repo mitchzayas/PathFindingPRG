@@ -32,3 +32,32 @@ I use two lookup tables (one for the hi-bytes of the addresses and one for the l
 [add screenshot of the lookup tables here]
 
 In the tilesGraphics.asm file, the subroutine called drawTile blasts 32 bytes of tile data to HGR page 1 (tile definitions are in the inits.asm file). Note, drawTile is fairly “unrolled” and leverages self-modifying code for speed. All we have to do is pass the cell number (0-239) to drawTile in the X-register and the tile number (0-5) in the accumulator. Many more tiles can be defined, but I only needed 6 for this demo.
+
+### Casting a wave:
+
+[Javidx9’s video on wave propagation path finding](https://youtu.be/0ihciMKlcP8) provides a clear, step-by-step explanation of the algorithm. I recommend you view his video, as it will help you follow the code. By the way, don’t be intimidated by the word “algorithm” as it’s just a repeatable process. Think of it as a sequence of steps that are repeated over and over again until an outcome is achieved.
+
+I followed Javidx9’s method fairly faithfully, casting a wave by utilizing two arrays, NodeArray and NeighborArray in the waveP.asm file, as he describes. The difference in my approach is that I scored the neighbor cells when they were found, ensuring I never had to contend with duplicate cells in the array.
+
+Wave Propagation Algorithm:
+1. Initialize every cell in the grid to a score of 0
+    * Score of 0 means walkable
+    * Score of -1 means a non-walkable obstacle (note, -1 = 255 = $FF in hex)
+    * Score >=1 is the cell’s score, meaning how far away it is from the goal cell
+2. Start at the goal cell. This is the “current cell”. Add it to the NodeArray and give it a score of 1. 
+3. Find the current cell’s neighbors to the east, west, north and south. The score for these cells is current cell’s score +1
+    * Add each neighbor to the NeighborArray if:
+        * It is within the grid’s borders
+        * It has a score of 0 (walkable). In other words:
+            * It does not have a score of -1 ($FF), indicating its an obstacle
+            * It does not have a score >= 1, indicating we scored it already
+    * If no neighbor cells were found, then the wave processed every cell in the 240 cell grid and the algorithm is done. Exit!
+4. Remove the current cell from the NodeArray, since we’ve processed it. If there are other cells in NodeArray (there will be in subsequent passes), loop through each of them until NodeArray is empty (i.e. go back to step 3) 
+5. Transfer each cell in the NeighborArray to the NodeArray. NeighborArray is now empty. Go back to step 3.
+
+### Follow the path
+Once we have each cell in the grid scored based on its distance to the goal node, we use the FindPath subroutine in the optimalPath.asm file to fill an array called Path.
+
+The first element added to this array is the start cell. It then looks at the scores for the east, west, north and south neighbors, picking the one with the lowest score. This cell then gets added to the Path array and the process repeats until the goal cell is reached.
+
+If the goal cell, start cell or an obstacle is added (or removed) from the grid, the program casts a new wave and rescores each cell once again, then we rerun FindPath.
