@@ -1,7 +1,7 @@
 # Wave Propagation Pathfinding
 This Apple II program demonstrates [wave propagation path finding](https://en.wikipedia.org/wiki/Wavefront_expansion_algorithm). The program was written in assembly using the [CC65 Cross Compiler](https://cc65.github.io). To run it in your favorite Apple II emulator, download the [WaveP Disk Image](/WaveP.DSK).
 
-![Wave Propagation Program Screenshot](/WAVEP.png)
+![Wave Propagation Program Screenshot](/Path_Screenshot.png)
 
 ### Using the Program:
 The program displays an empty grid consisting of 20 cells across and 12 cells down. One can move either the **Starting Cell** (S) or the **Goal Cell** (G) using the arrow keys and the path (in green) will automatically adjust to the new cell positions and around obstables. To toggle which cell you want to move, press "S" (or "G"), then use the arrow keys to move it around the grid. 
