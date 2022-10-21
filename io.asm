@@ -114,11 +114,11 @@ keypull:
 ; -------------------------------------------------------
 ;
 .proc moveGoal
+        ldx NodeGoal        ; load the NodeGoal value
+        stx ZP14        
         cmp #136            ; was left arrow key pressed?
         bne @checkRight
 ;        
-        ldx NodeGoal        ; load the NodeGoal value
-        stx ZP14
         lda NodeX,x         
         beq @out            ; can't move left if NodeX = 0
         dex                 ; we're going left
@@ -128,6 +128,9 @@ keypull:
         bmi @out            ; can't move if NodeScore is negative (i.e. obstable)
         stx NodeGoal        ; We can move! Store the new nodeGoal value
         jsr erasePath
+        ldx ZP14
+        lda #0
+        jsr eraseTile
         lda #1
         sta reCalcFlag
         jmp @out
@@ -146,6 +149,9 @@ keypull:
         bmi @out           ; can't move if NodeScore is negative (i.e. obstable)
         stx NodeGoal        ; We can move! Store the new nodeGoal value
         jsr erasePath
+        ldx ZP14
+        lda #0
+        jsr eraseTile
         lda #1
         sta reCalcFlag
         jmp @out
@@ -168,6 +174,9 @@ keypull:
         bmi @out            ; can't move if NodeScore is negative (i.e. obstable)
         stx NodeGoal        ; We can move! Store the new nodeGoal value
         jsr erasePath
+        ldx ZP14
+        lda #0
+        jsr eraseTile
         lda #1
         sta reCalcFlag
         jmp @out
@@ -189,6 +198,9 @@ keypull:
         bmi @out            ; can't move if NodeScore is negative (i.e. obstable)
         stx NodeGoal        ; We can move! Store the new nodeGoal value
         jsr erasePath
+        ldx ZP14
+        lda #0
+        jsr eraseTile
         lda #1
         sta reCalcFlag
 ;
